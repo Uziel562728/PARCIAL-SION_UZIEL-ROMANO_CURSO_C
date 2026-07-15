@@ -1,0 +1,66 @@
+@baseUrl = http://localhost:3000/api/v1
+@token = PEGAR_TOKEN_ACA
+@habitacionId = PEGAR_ID_ACA
+
+### Login válido
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### Login inválido
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "mal"
+}
+
+### Crear habitación
+POST {{baseUrl}}/habitaciones
+Content-Type: application/json
+
+{
+  "nombre": "Habitación 101",
+  "plazasDisponibles": 3
+}
+
+### Listar habitaciones
+GET {{baseUrl}}/habitaciones
+
+### Listar habitaciones disponibles
+GET {{baseUrl}}/habitaciones?disponible=true
+
+### Obtener habitación por ID
+GET {{baseUrl}}/habitaciones/{{habitacionId}}
+
+### Update sin JWT
+PUT {{baseUrl}}/habitaciones/{{habitacionId}}
+Content-Type: application/json
+
+{
+  "nombre": "Habitación 101 editada",
+  "plazasDisponibles": 3
+}
+
+### Update con JWT válido
+# Primero ejecutar Login válido, copiar el token y pegarlo arriba en @token
+PUT {{baseUrl}}/habitaciones/{{habitacionId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nombre": "Habitación 101 editada",
+  "plazasDisponibles": 4
+}
+
+### Delete protegido
+DELETE {{baseUrl}}/habitaciones/{{habitacionId}}
+Authorization: Bearer {{token}}
+
+### Generar CSV de Pokémon
+GET {{baseUrl}}/pokemon/csv
