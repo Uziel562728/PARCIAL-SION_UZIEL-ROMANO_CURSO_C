@@ -34,9 +34,15 @@ export const generarCsvPokemonService = async () => {
         csv += `${pokemon.id},${pokemon.name},${pokemon.height},${pokemon.weight},${pokemon.base_experience}\n`;
     });
 
-    const rutaArchivo = path.join(process.cwd(), "pokemon_15.csv");
+  const carpetaArchivos = path.join(process.cwd(), "files");
 
-    await fs.writeFile(rutaArchivo, csv);
+await fs.mkdir(carpetaArchivos, {
+    recursive: true
+});
+
+const rutaArchivo = path.join(carpetaArchivos, "pokemon_15.csv");
+
+await fs.writeFile(rutaArchivo, csv);
 
     return csv;
 };
