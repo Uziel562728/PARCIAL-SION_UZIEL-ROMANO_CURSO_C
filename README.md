@@ -114,7 +114,7 @@ Authorization: Bearer TOKEN
 GET /api/v1/pokemon/csv
 ```
 
-Genera el archivo `pokemon_15.csv` con los Pokémon del 1 al 15.
+Genera el archivo `pokemon_15.csv` con los Pokémon del 1 al 15 dentro de la carpeta files.
 
 ## Pruebas
 
